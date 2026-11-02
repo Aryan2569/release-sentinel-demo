@@ -1,6 +1,14 @@
 # Release Sentinel Demo Repository
 
-This demonstration repository illustrates how **Release Sentinel** protects pull requests against compromised npm dependency updates using GitHub Actions.
+This repository provides live demonstration pull requests for [**Release Sentinel**](https://github.com/Aryan2569/release-sentinel), a time-aware static security gate that inspects `package-lock.json` changes on pull requests to catch malicious packages, lockfile tampering, and suspicious scripts before merge.
+
+> [!IMPORTANT]
+> **Live Demo Pull Requests**:
+> The three demonstration pull requests below are **intentionally left open** to showcase Release Sentinel's CI gate checks and pull request comments. **They must NOT be merged.**
+>
+> 1. **[PR #1: Benign Upgrade (lodash 4.17.20 -> 4.17.21)](https://github.com/Aryan2569/release-sentinel-demo/pull/1)** — Verdict: `✅ ALLOW` (CI Passes; clean updates produce zero PR comment noise).
+> 2. **[PR #2: Same-Version Lockfile Integrity Tamper](https://github.com/Aryan2569/release-sentinel-demo/pull/2)** — Verdict: `🛑 BLOCK` (CI Fails; detects `lockfile_integrity_changed` when an existing package's hash is swapped).
+> 3. **[PR #3: Lockfile Resolved URL Mismatch](https://github.com/Aryan2569/release-sentinel-demo/pull/3)** — Verdict: `🛑 BLOCK` (CI Fails; detects `lockfile_resolved_mismatch` when tarball URL redirects).
 
 > [!NOTE]
 > **Minimal Demo Manifest**: The `package-lock.json` in this repository is intentionally minimal for demonstration purposes, containing only top-level dependencies (`express`, `lodash`). In a full production application, npm generates a comprehensive dependency tree with all transitive dependencies, all of which Release Sentinel audits during pull requests.
@@ -45,7 +53,7 @@ You can test Release Sentinel against this demo repository locally using the CLI
 
 ---
 
-## Planned Demonstration Pull Requests
+## Demonstration Pull Request Details
 
 When evaluating or showcasing Release Sentinel in CI, three standard pull requests demonstrate the gate's behavior:
 
